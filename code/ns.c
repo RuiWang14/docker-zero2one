@@ -17,6 +17,7 @@ int container_main(void* arg)
 {
     printf("Container [%5d] - inside the container!\n", getpid());
     sethostname("container",10);
+    system("mount -t proc proc /proc");
     execv(container_args[0], container_args);
     printf("Something's wrong!\n");
     return 1;
@@ -25,7 +26,7 @@ int container_main(void* arg)
 int main()
 {
     printf("Container [%5d] - inside the container!\n", getpid());
-    int container_pid = clone(container_main, container_stack+STACK_SIZE,CLONE_NEWUTS | CLONE_NEWPID | SIGCHLD, NULL);
+    int container_pid = clone(container_main, container_stack+STACK_SIZE,CLONE_NEWUTS | CLONE_NEWPID | CLONE_NEWNS | SIGCHLD, NULL);
     /* 等待子进程结束 */
     waitpid(container_pid, NULL, 0);
     printf("Parent - container stopped!\n");
