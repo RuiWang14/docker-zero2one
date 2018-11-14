@@ -26,7 +26,7 @@ int container_main(void* arg)
 int main()
 {
     printf("Parent - start a container!\n");
-    int container_pid = clone(container_main, container_stack+STACK_SIZE,CLONE_NEWUTS | SIGCHLD, NULL);
+    int container_pid = clone(container_main, container_stack+STACK_SIZE,CLONE_NEWUTS | CLONE_NEWIPC | SIGCHLD`, NULL);
     /* 等待子进程结束 */
     waitpid(container_pid, NULL, 0);
     printf("Parent - container stopped!\n");
