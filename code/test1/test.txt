@@ -1,0 +1,36 @@
+# Namespace 修改进程视图
+
+docker run -it centos:7.2.1511
+ 
+ps
+
+
+
+# Cgroups 限制一个进程组能够使用的资源上限
+mount -t cgroup
+
+# 使用 Cgroups 限制资源使用
+mkdir test_container
+ls container/
+
+while : ; do : ; done &
+
+top
+
+cat /sys/fs/cgroup/cpu/container/cpu.cfs_quota_us 
+cat /sys/fs/cgroup/cpu/container/cpu.cfs_period_us
+
+echo 20000 > /sys/fs/cgroup/cpu/container/cpu.cfs_quota_us
+echo YOUR_PID > /sys/fs/cgroup/cpu/container/tasks 
+
+top
+
+# docker 资源使用限制
+docker run -it --cpu-period=100000 --cpu-quota=20000 centos:7.2.1511
+
+cd /sys/fs/cgroup/cpu/system.slice/
+
+
+
+
+
