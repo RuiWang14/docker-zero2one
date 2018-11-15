@@ -1,3 +1,12 @@
+# 修改 pid 
+gcc -o pid pid.c
+./pid
+
+ps -ef 
+top
+
+
+# 进程视图隔离
 gcc -o ns ns.c
 ./ns
 
