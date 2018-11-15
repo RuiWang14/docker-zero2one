@@ -18,7 +18,7 @@ int container_main(void* arg)
     printf("Container [%5d] - inside the container!\n", getpid());
     sethostname("container",10);
     /* 挂载 /proc */
-    mount("", "/", NULL, MS_PRIVATE, "")
+    mount("", "/", NULL, MS_PRIVATE, "");
     system("mount -t proc proc /proc");
     execv(container_args[0], container_args);
     printf("Something's wrong!\n");
