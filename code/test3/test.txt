@@ -1,6 +1,9 @@
+# 挂载文件
 gcc -o mnt mnt.c
 ./mnt
 
-# 取消挂载
+ls /root/tmp
+
+# 宿主机
 ls /root/tmp
 
