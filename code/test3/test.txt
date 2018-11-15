@@ -2,7 +2,5 @@ gcc -o mnt mnt.c
 ./mnt
 
 # 取消挂载
-mount -t proc proc /proc
-top
-ps -ef
+ls /root/tmp
 
