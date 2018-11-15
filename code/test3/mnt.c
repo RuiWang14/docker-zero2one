@@ -16,7 +16,8 @@ char* const container_args[] = {
 int container_main(void* arg)
 {
     printf("Container - inside the container!\n");
-    mount("none", "/tmp", "tmpfs", 0, "");
+    mount("", "/", NULL, MS_PRIVATE, "")
+    mount("none", "/root/tmp", "tmpfs", 0, "");
     execv(container_args[0], container_args);
     printf("Something's wrong!\n");
     return 1;
